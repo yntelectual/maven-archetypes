@@ -1,4 +1,7 @@
-package com.binarytale.javaee.dao;
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+package ${package}.dao;
 
 import java.util.List;
 
@@ -6,9 +9,11 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.binarytale.javaee.model.User;
+import ${package}.cdi.Trace;
+import ${package}.model.User;
 
 @Stateless
+@Trace
 public class UserDAO {
 
     @PersistenceContext

@@ -1,4 +1,7 @@
-package com.binarytale.javaee.model;
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+package ${package}.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

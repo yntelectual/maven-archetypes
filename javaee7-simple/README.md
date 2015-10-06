@@ -1,7 +1,7 @@
 # Simplest JavaEE web app possible
 
 No batteries included. This archetype is just what the title says, nothing more.
-Its intended use is for quick testing of features are HTML web apps with possible
+Its intended use is for quick testing of features or HTML web apps with possible
 future integration with JavaEE.
 
 Please note the limitations of this project, namely :
@@ -14,4 +14,16 @@ Please note the limitations of this project, namely :
 
 ## how to create a project based on this archetype
 
-    code
+```
+mvn archetype:generate -Dfilter=com.binarytale.archetypes:javaee-simple
+```
+    
+## build and deploy
+
+In the project directory run:
+
+```sh
+mvn clean install
+```
+
+After successful build move the resulting ```.war``` file in ```target``` folder to the JavaEE 7 server of your choice.

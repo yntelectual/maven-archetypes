@@ -1,4 +1,7 @@
-package com.binarytale.javaee;
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+package ${package}.session;
 
 import java.io.Serializable;
 import java.util.List;
@@ -7,8 +10,8 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
-import com.binarytale.javaee.dao.UserDAO;
-import com.binarytale.javaee.model.User;
+import ${package}.dao.UserDAO;
+import ${package}.model.User;
 
 @SessionScoped
 public class UserSessionController implements Serializable {

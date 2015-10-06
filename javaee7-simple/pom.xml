@@ -1,61 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.binarytale.javaee</groupId>
-	<artifactId>javaee-simple</artifactId>
+	<groupId>com.binarytale.archetypes</groupId>
+	<artifactId>javaee7-simple-archetype</artifactId>
 	<version>1.0-SNAPSHOT</version>
+	<packaging>maven-archetype</packaging>
+
+	<name>javaee7-simple-archetype</name>
 	<description>JavaEE 7 WAR simple project. Just the bare minimum to get started.</description>
-	<packaging>war</packaging>
 
-	<properties>
-		<java.min.version>1.7</java.min.version>
-		<maven.min.version>3.0.0</maven.min.version>
-		<version.javaee_api>7.0</version.javaee_api>
+	<url>https://github.com/yntelectual/maven-archetypes</url>
 
-		<!-- We list the maven plugin versions explicitly-->
-		<!-- You can also move the version definitions from properties to build/plugins/plugin/version directly but this is easier to find and identify in case of build issues-->
-		<!-- In case you upgrade to a multi-module project later, ALWAYS move all properties, dependency management and build plugin definitions to common parent project-->
-		<version.compiler.plugin>3.1</version.compiler.plugin>
-		<version.war.plugin>2.5</version.war.plugin>
-	</properties>
+	<developers>
+		<developer>
+			<name>Matus</name>
+			<organization>binarytale.com</organization>
+			<organizationUrl>http://binarytale.com</organizationUrl>
+		</developer>
+	</developers>
 
-	<prerequisites>
-		<maven>${maven.min.version}</maven>
-	</prerequisites>
+	<licenses>
+		<license>
+			<name>The MIT License (MIT)</name>
+			<url>https://github.com/yntelectual/maven-archetypes/blob/master/LICENSE</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 
-	<!-- To start with java ee 7, this is the only dependency that we need -->
-	<dependencies>
-		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-			<version>${version.javaee_api}</version>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
-
-	<!-- You could omit these, but it is always better to be explicit in describing how your project is built. Especially if you work in a team. -->
 	<build>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.archetype</groupId>
+				<artifactId>archetype-packaging</artifactId>
+				<version>2.3</version>
+			</extension>
+		</extensions>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-archetype-plugin</artifactId>
+					<version>2.3</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
-			<!-- Our build is simple, we want a war file that contains classes compiled with JDK 1.8 and in UTF-8 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${version.compiler.plugin}</version>
-				<configuration>
-					<source>${java.min.version}</source>
-					<target>${java.min.version}</target>
-					<encoding>UTF-8</encoding>
-				</configuration>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>${version.war.plugin}</version>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.2</version>
 				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<tagNameFormat>v@{project.version}</tagNameFormat>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+	<scm>
+		<connection>scm:git:git@github.com:yntelectual/maven-archetypes.git</connection>
+		<url>scm:git:git@github.com:yntelectual/maven-archetypes.git</url>
+		<developerConnection>scm:git:git@github.com:yntelectual/maven-archetypes.git</developerConnection>
+	</scm>
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
 </project>

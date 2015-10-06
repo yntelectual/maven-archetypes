@@ -1,4 +1,7 @@
-package com.binarytale.javaee.rest;
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+package ${package}.rest;
 
 import java.util.List;
 
@@ -9,11 +12,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.binarytale.javaee.UserSessionController;
-import com.binarytale.javaee.model.User;
+import ${package}.cdi.Trace;
+import ${package}.model.User;
+import ${package}.session.UserSessionController;
 
 @Path("/users")
 @RequestScoped
+@Trace
 public class UserEndpoint {
 
     //note this is not the best idea in stateless design, to inject session into REST,
